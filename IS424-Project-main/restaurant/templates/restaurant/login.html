@@ -1,0 +1,21 @@
+{% extends "restaurant/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+
+<div class="text-center">
+    <img src="{% static 'restaurant/logo.png' %}" alt="Logo" id="logo">
+    <h2>Login</h2>
+
+    <form method="post" action="{% url 'restaurant:login' %}" class="form-signin">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+    </form>
+    {% if error %}
+    <p class="text-danger">{{ error }}</p>
+    {% endif %}
+    <p><a href="{% url 'restaurant:signup' %}">Sign up</a></p>
+</div>
+{% endblock %}
