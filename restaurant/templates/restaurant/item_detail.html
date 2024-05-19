@@ -1,0 +1,10 @@
+{% extends "restaurant/layout.html" %}
+
+{% block body %}
+<h1>{{ item.name }}</h1>
+<p>Description: {{ item.description }}</p>
+<p>Price: ${{ item.price }}</p>
+<p>Time to Serve: {{ item.time_to_serve }} minutes</p>
+
+<a href="{% url 'restaurant:edit_menu_item' item.pk %}">Edit Item</a>
+{% endblock %}

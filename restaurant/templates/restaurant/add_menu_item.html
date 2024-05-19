@@ -1,0 +1,10 @@
+{% extends "restaurant/layout.html" %}
+
+{% block body %}
+<h2 class="text-center">Add Menu Item</h2>
+<form method="post" class="form-signin">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary btn-block">{% if form.instance.pk %}Update{% else %}Add{% endif %} Item</button>
+</form>
+{% endblock %}
