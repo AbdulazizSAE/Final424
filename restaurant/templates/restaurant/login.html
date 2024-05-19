@@ -10,7 +10,7 @@
 
     <form method="post" action="{% url 'restaurant:login' %}" class="form-signin">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form }}
         <button type="submit" class="btn btn-primary btn-block">Login</button>
     </form>
     {% if error %}

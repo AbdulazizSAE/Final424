@@ -9,7 +9,9 @@
         <a class="navbar-brand" href="#">Restaurant</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link" href="{% url 'restaurant:menu' %}">Menu</a></li>
+                {% if not request.path in "['/login/', '/signup/']" %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'restaurant:menu' %}">Menu</a></li>
+                {% endif %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'restaurant:login' %}">Login</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'restaurant:signup' %}">Sign Up</a></li>
             </ul>

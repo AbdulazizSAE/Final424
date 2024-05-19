@@ -1,4 +1,5 @@
 {% extends "restaurant/layout.html" %}
+{% load static %}
 
 {% block body %}
 <h1>{{ item.name }}</h1>
@@ -6,5 +7,23 @@
 <p>Price: ${{ item.price }}</p>
 <p>Time to Serve: {{ item.time_to_serve }} minutes</p>
 
-<a href="{% url 'restaurant:edit_menu_item' item.pk %}">Edit Item</a>
+<form method="post" action="{% url 'restaurant:item_detail' item.pk %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Purchase</button>
+</form>
+
+<h3>Users who bought this item:</h3>
+<ul>
+    {% for purchase in purchases %}
+        <li>{{ purchase.user.username }} - {{ purchase.quantity }} times</li>
+    {% empty %}
+        <li>No purchases yet.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'restaurant:edit_menu_item' item.pk %}" class="btn btn-sm btn-outline-primary">Edit Item</a>
 {% endblock %}
